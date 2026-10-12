@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-grotesk);
+  --font-body: var(--font-manrope);
+  --font-mono: var(--font-jetbrains);
+}
+
+@theme {
+  /* Landing (light, warm paper) */
+  --color-paper: #f2efe6;
+  --color-cream: #faf8f1;
+  --color-ink: #16181d;
+  --color-ink-soft: #454b55;
+  --color-mist: #707683;
+  --color-line: #ddd6c6;
+
+  /* Brand + semantic */
+  --color-ember: #e4572e;
+  --color-ember-deep: #b93d1a;
+  --color-moss: #2e7d53;
+  --color-moss-soft: #e3efe6;
+  --color-honey: #b97c10;
+  --color-honey-soft: #f5ecd7;
+  --color-rust: #c03a31;
+  --color-rust-soft: #f7e3e0;
+
+  /* Console (dark) */
+  --color-coal: #0b0d11;
+  --color-panel: #12151b;
+  --color-panel-2: #1a1e26;
+  --color-edge: #272d38;
+  --color-bone: #e9ebe4;
+  --color-fog: #98a0ac;
+
+  /* Fixed near-white used for text on accent buttons (never flips with theme) */
+  --color-shell: #faf8f1;
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-flow: flow 1.3s linear infinite;
+  --animate-blink: blink 1.8s ease-in-out infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-float-slow: float 7s ease-in-out infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes flow {
+    to {
+      stroke-dashoffset: -32;
+    }
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------- theme switching -------------------------
+   data-theme="dark"  → landing palette flips to dark
+   data-theme="light" → console palette flips to light
+   data-theme="system" follows the OS preference                    */
+
+:root[data-theme="dark"] {
+  --color-paper: #0c0e12;
+  --color-cream: #14171d;
+  --color-ink: #e9ebe4;
+  --color-ink-soft: #c6ccd4;
+  --color-mist: #98a0ac;
+  --color-line: #272d38;
+}
+
+:root[data-theme="light"] {
+  --color-coal: #f4f2ec;
+  --color-panel: #fbfaf6;
+  --color-panel-2: #efede5;
+  --color-edge: #d9d2c2;
+  --color-bone: #16181d;
+  --color-fog: #5c636d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --color-paper: #0c0e12;
+    --color-cream: #14171d;
+    --color-ink: #e9ebe4;
+    --color-ink-soft: #c6ccd4;
+    --color-mist: #98a0ac;
+    --color-line: #272d38;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --color-coal: #f4f2ec;
+    --color-panel: #fbfaf6;
+    --color-panel-2: #efede5;
+    --color-edge: #d9d2c2;
+    --color-bone: #16181d;
+    --color-fog: #5c636d;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: #e4572e;
+  color: #faf8f1;
+}
+
+.dotgrid {
+  background-image: radial-gradient(circle, rgb(233 235 228 / 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.papergrid {
+  background-image: linear-gradient(rgb(22 24 29 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(22 24 29 / 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
